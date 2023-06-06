@@ -7,7 +7,7 @@ import axios from 'axios';
 const Newlogin = () => {
     const history = useNavigate();
     const url = 'http://localhost:3000/user/login';
-    async function Login (data) {
+    async function Login(data) {
         const response = await axios.post(url, data);
         return response;
     };
@@ -22,6 +22,12 @@ const Newlogin = () => {
             message.error('User logged in failed!');
         });
     };
+
+    const handleForgotPassword = () => {
+        // Implement the logic for handling the "Forgot Password" action
+        message.info('Forgot Password');
+    };
+
     return (
         <Row
             className='form'
@@ -45,7 +51,7 @@ const Newlogin = () => {
                     padding: "1em 2em",
                 }}
             >
-                {/* <img src={Logo} /> */}
+                {/* <img src={logo} alt='logo' style={{ width: '200px', height: 'auto', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} /> */}
                 <h1 style={{ textAlign: "center" }}>Login</h1>
                 <Form
                     style={{
@@ -72,17 +78,26 @@ const Newlogin = () => {
                         <Input.Password />
                     </Form.Item>
                     <Form.Item style={{ textAlign: "center" }}>
-                        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-                            Log in
+                        <Button type="primary" htmlType='submit' style={{ width: "100%" }}>
+                            <span>
+                                <a onClick={() => history("/home")}>Login</a>
+                            </span>
                         </Button>
+                    </Form.Item>
+
+                    <Form.Item style={{ textAlign: 'right', color: '#1877f2' }}>
+                        <span>
+                            <a onClick={() => history("/forgotpassword")}>Forgot Password?</a>
+                        </span>
                     </Form.Item>
 
                     <Form.Item style={{ textAlign: "center" }}>
                         <span>
                             Need an account?{" "}
-                            <a onClick={()=> history("/signup")}>Sign Up</a>
+                            <a onClick={() => history("/signup")}>Sign Up</a>
                         </span>
                     </Form.Item>
+
                 </Form>
             </Col>
         </Row>
