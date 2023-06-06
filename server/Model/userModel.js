@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Last name is required!']
     },
+    country: {
+        type: String,
+        // required: [true, 'Country is required!'],
+        default: 'Nepal'
+    },
     username: {
         type: String,
         required: [true, 'Username is required!'],
