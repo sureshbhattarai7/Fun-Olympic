@@ -13,13 +13,17 @@ const userSchema = new mongoose.Schema({
     },
     country: {
         type: String,
-        // required: [true, 'Country is required!'],
-        default: 'Nepal'
+        //required: [true, 'Country is required!'],
     },
     username: {
         type: String,
         required: [true, 'Username is required!'],
         unique: [true, 'Username must be unique!']
+    },
+    roles: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'user'
     },
     email: {
         type: String,
@@ -47,11 +51,7 @@ const userSchema = new mongoose.Schema({
             message: 'Password does not match!'
         }
     },
-    roles: {
-        type: String,
-        enum: ['admin', 'teacher', 'student'],
-        default: 'student'
-    }
+   
 });
 
 userSchema.pre('save', async function (next) {

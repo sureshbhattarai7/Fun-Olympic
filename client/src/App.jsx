@@ -1,19 +1,25 @@
 import Register from "./Component/Register"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Newlogin from "./Component/Newlogin";
-import Home from "./Component/Homepage";
+import Homepage from "./Component/Homepage";
+import About from "./Component/About";
+import API from "./Component/Api";
+import ContactUs from "./Component/ContactUs";
 
 function App() {
 
   return (
-    <BrowserRouter>
+    <><BrowserRouter>
+      <Homepage />
       <Routes>
-        {/* <Route path="/" element={<Navbar />} /> */}
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/home" element={<Homepage />} /> */}
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Newlogin />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/api" element={<API />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter></>
   )
 }
 

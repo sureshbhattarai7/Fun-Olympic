@@ -46,6 +46,7 @@ const Register = () => {
             passwordConfirm: vals.confirmPassword,
             captcha
         }).then((res) => {
+            history('/login');
             message.success('User registered successfully!');
         }).catch((err) => {
             message.warning(err.response.data.message);
@@ -60,7 +61,7 @@ const Register = () => {
             justify="center"
             align="middle"
             style={{
-                height: "150vh",
+                height: "auto",
                 backgroundColor: "#536c79",
             }}
         >
@@ -82,26 +83,30 @@ const Register = () => {
                 <h1 style={{ textAlign: "center" }}>Sign Up</h1>
 
 
-                <Form
-                    onFinish={onfinish}
-                    layout='vertical'
-                >
+                <Form onFinish={onfinish} layout='vertical'>
+                    <Row gutter={16}>
+                        <Col span={12}>
 
-                    <Form.Item
-                        label="First Name"
-                        name="firstName"
-                        rules={[{ required: true, message: "Please enter a First Name" }]}
-                    >
-                        <Input />
-                    </Form.Item>
+                            <Form.Item
+                                label="First Name"
+                                name="firstName"
+                                rules={[{ required: true, message: "Please enter a First Name" }]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </Col>
 
-                    <Form.Item
-                        label="Last Name"
-                        name="lastName"
-                        rules={[{ required: true, message: "Please enter a Last Name" }]}
-                    >
-                        <Input />
-                    </Form.Item>
+                        <Col span={12}>
+                            <Form.Item
+                                label="Last Name"
+                                name="lastName"
+                                rules={[{ required: true, message: "Please enter a Last Name" }]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+
 
                     <Form.Item
                         label="Username"
@@ -110,6 +115,15 @@ const Register = () => {
                     >
                         <Input />
                     </Form.Item>
+
+                    <Form.Item
+                        label="Country"
+                        name="country"
+                        rules={[{ required: true, message: "Please enter a country name" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
                     <Form.Item
                         label="Email"
                         name="email"
@@ -117,6 +131,7 @@ const Register = () => {
                     >
                         <Input />
                     </Form.Item>
+
                     <Form.Item
                         label="Password"
                         name="password"
@@ -132,15 +147,15 @@ const Register = () => {
                             percent={100}
                             size={30}
                             status='success' /><span style={{ color: 'green' }}> Strong Password </span></Space> : passCheck === 'Weak' ?
-                            <Space>
-                        <Progress
-                            type='circle'
-                            percent={30}
-                            size={30}
-                            status='exception' />
-                                <span style={{ color: 'red' }}> Weak Password </span>
+                        <Space>
+                            <Progress
+                                type='circle'
+                                percent={30}
+                                size={30}
+                                status='exception' />
+                            <span style={{ color: 'red' }}> Weak Password </span>
                             <div>Password must contain at least 8 characters, at least one uppercase, lowercase, special characters and numbers </div>
-                            </Space>
+                        </Space>
                         : null}
                     <Form.Item
                         name="confirmPassword"
@@ -172,14 +187,14 @@ const Register = () => {
 
                     <Form.Item style={{ textAlign: "center" }}>
                         <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-                            Sign Up
+                            <a onClick={() => history("/login")}>Sign Up</a>
                         </Button>
                     </Form.Item>
 
                     <Form.Item style={{ textAlign: "center" }}>
                         <span>
                             Already have an account?{" "}
-                            <a onClick={() => history("/")}>Login</a>
+                            <a onClick={() => history("/login")} style={{ color: 'blue' }}>Login</a>
                         </span>
                     </Form.Item>
                 </Form>

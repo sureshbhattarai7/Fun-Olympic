@@ -7,6 +7,7 @@ import axios from 'axios';
 const Newlogin = () => {
     const history = useNavigate();
     const url = 'http://localhost:3000/user/login';
+
     async function Login(data) {
         const response = await axios.post(url, data);
         return response;
@@ -17,6 +18,7 @@ const Newlogin = () => {
             email: vals.email,
             password: vals.password
         }).then((res) => {
+            history("/");
             message.success('User logged in successfully!');
         }).catch((err) => {
             message.error('User logged in failed!');
@@ -34,8 +36,8 @@ const Newlogin = () => {
             justify="center"
             align="middle"
             style={{
-                height: "100vh",
-                backgroundColor: "#536c79",
+                height: "91vh",
+                // backgroundColor: "#536c79",
             }}
         >
             <Col
@@ -51,7 +53,6 @@ const Newlogin = () => {
                     padding: "1em 2em",
                 }}
             >
-                {/* <img src={logo} alt='logo' style={{ width: '200px', height: 'auto', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} /> */}
                 <h1 style={{ textAlign: "center" }}>Login</h1>
                 <Form
                     style={{
@@ -80,7 +81,7 @@ const Newlogin = () => {
                     <Form.Item style={{ textAlign: "center" }}>
                         <Button type="primary" htmlType='submit' style={{ width: "100%" }}>
                             <span>
-                                <a onClick={() => history("/home")}>Login</a>
+                                <a onClick={() => history("/")}>Login</a>
                             </span>
                         </Button>
                     </Form.Item>
@@ -94,7 +95,7 @@ const Newlogin = () => {
                     <Form.Item style={{ textAlign: "center" }}>
                         <span>
                             Need an account?{" "}
-                            <a onClick={() => history("/signup")}>Sign Up</a>
+                            <a onClick={() => history("/signup")} style={{ color: 'blue' }}>Sign Up</a>
                         </span>
                     </Form.Item>
 
