@@ -62,7 +62,7 @@ const Register = () => {
             align="middle"
             style={{
                 height: "auto",
-                backgroundColor: "#536c79",
+                // backgroundColor: "#536c79",
             }}
         >
             <Col
@@ -107,7 +107,6 @@ const Register = () => {
                         </Col>
                     </Row>
 
-
                     <Form.Item
                         label="Username"
                         name="username"
@@ -116,6 +115,8 @@ const Register = () => {
                         <Input />
                     </Form.Item>
 
+
+
                     <Form.Item
                         label="Country"
                         name="country"
@@ -123,6 +124,7 @@ const Register = () => {
                     >
                         <Input />
                     </Form.Item>
+
 
                     <Form.Item
                         label="Email"

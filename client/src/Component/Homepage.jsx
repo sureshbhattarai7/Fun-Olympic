@@ -42,7 +42,8 @@ const Homepage = () => {
             onClick: () => {
                 history('/contact-us');
             }
-        }
+        },
+        
     ]
 
 

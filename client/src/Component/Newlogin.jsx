@@ -25,10 +25,6 @@ const Newlogin = () => {
         });
     };
 
-    const handleForgotPassword = () => {
-        // Implement the logic for handling the "Forgot Password" action
-        message.info('Forgot Password');
-    };
 
     return (
         <Row

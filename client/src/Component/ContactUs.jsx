@@ -18,6 +18,7 @@ const ContactUs = () => {
             email: vals.email,
             message: vals.message
         }).then((res) => {
+            console.log(fullname, email, message);
             message.success('Message sent successfully!');
         }).catch((err) => {
             message.warning(err.response);
@@ -45,7 +46,6 @@ const ContactUs = () => {
                     backgroundColor: "white",
                     boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.0784313725490196)",
                     padding: "1em 2em",
-
                 }}
             >
                 <Form onFinish={onFinish} layout='vertical'>
@@ -63,7 +63,7 @@ const ContactUs = () => {
 
                             <Form.Item
                                 label="Enter your Email"
-                                name="youremail"
+                                name="email"
                                 rules={[{ required: true, message: 'Please enter your email!' }]}>
                                 <Input />
                             </Form.Item>
@@ -72,7 +72,7 @@ const ContactUs = () => {
 
                     <Form.Item
                         label="Enter your Message"
-                        name="yourmessage"
+                        name="message"
                         rules={[{ required: true, message: 'Please enter your message!' }]}>
                         <Input.TextArea rows={6} />
                     </Form.Item>
