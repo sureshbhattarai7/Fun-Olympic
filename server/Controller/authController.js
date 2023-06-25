@@ -43,7 +43,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     createAndSendToken(newUser, 201, res);
 });
 
-exports.login = catchAsync(async (req, res, nex) => {
+exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
 
     //CHECK IF EMAIL AND PASSWORD EXISTS
@@ -107,10 +107,14 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     }
 
     //IF EMAIL EXISTS, GENERATE AND SEND THE OTP
+    const { email } = req.body;
+    const generateOTP = () => {
+        return otpgenerator.generate(5, { digits: false, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
+    }
     const otp = generateOTP();
+
     sendOTPEmail(email, otp);
-    res.json({
-        status: 'success',
-        message: 'OTP sent successfully!'
-    });
-})
+
+    res.json({ message: 'OTP sent successfully!' });
+});
+

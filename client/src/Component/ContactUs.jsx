@@ -18,7 +18,6 @@ const ContactUs = () => {
             email: vals.email,
             message: vals.message
         }).then((res) => {
-            console.log(fullname, email, message);
             message.success('Message sent successfully!');
         }).catch((err) => {
             message.warning(err.response);

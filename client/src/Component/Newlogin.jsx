@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Input, Row, Col, Button, message } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +21,38 @@ const Newlogin = () => {
             history("/");
             message.success('User logged in successfully!');
         }).catch((err) => {
+            console.log(err);
             message.error('User logged in failed!');
         });
     };
+
+    function handleCallbackResponse() {
+        console.log("Encoded JWT ID token: " + response.credential);
+    }
+
+    const initializeGoogleSignIn = () => {
+        // Load the Google Sign-In library
+        const script = document.createElement('script');
+        script.src = 'https://accounts.google.com/gsi/client';
+        script.onload = () => {
+          google.accounts.id.initialize({
+            client_id: "672357485286-51lj6snvj005bfd1eo899euduhkevmhn.apps.googleusercontent.com",
+            callback: handleCallbackResponse
+          });
+      
+          google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large" }
+          );
+        };
+      
+        document.body.appendChild(script);
+      };
+      
+      
+        useEffect(() => {
+          initializeGoogleSignIn();
+        }, []);
 
 
     return (
@@ -32,8 +61,8 @@ const Newlogin = () => {
             justify="center"
             align="middle"
             style={{
-                height: "91vh",
-                // backgroundColor: "#536c79",
+                height: "100vh",
+                backgroundColor: "#536c79",
             }}
         >
             <Col
@@ -47,6 +76,7 @@ const Newlogin = () => {
                     backgroundColor: "white",
                     boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.0784313725490196)",
                     padding: "1em 2em",
+                    borderRadius: "30px"
                 }}
             >
                 <h1 style={{ textAlign: "center" }}>Login</h1>
@@ -86,6 +116,10 @@ const Newlogin = () => {
                         <span>
                             <a onClick={() => history("/forgotpassword")}>Forgot Password?</a>
                         </span>
+                    </Form.Item>
+
+                    <Form.Item style={{ textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+                        <div id='signInDiv'></div>
                     </Form.Item>
 
                     <Form.Item style={{ textAlign: "center" }}>

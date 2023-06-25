@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Row, Col, Button, Input, message, Space, Progress } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Form, Row, Col, Button, Input, message, Space, Progress, Cascader } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -10,6 +10,25 @@ const Register = () => {
     const [pass, setPass] = useState({ passInput: '' });
     const [passCheck, setPassCheck] = useState('');
     const SITE_KEY = '6LefAyUlAAAAAFz6keTfhYnLAxjo-ROa0_drkCYS'
+
+    const [countryLists, setCountryLists] = useState("");
+    const countryApi = async () => {
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        return response;
+    };
+
+    useEffect(() => {
+        countryApi().then((res) => {
+            const options = res.data.map((cl) => ({
+                value: cl.name.common,
+                label: cl.name.common
+            }));
+            console.log(options);
+            setCountryLists(options);
+        }).catch((err) => {
+            console.log(err);
+        })
+    })
 
     const url = "http://127.0.0.1:3000/user/register";
     const Register = async (data) => {
@@ -62,7 +81,7 @@ const Register = () => {
             align="middle"
             style={{
                 height: "auto",
-                // backgroundColor: "#536c79",
+                backgroundColor: "#536c79",
             }}
         >
             <Col
@@ -76,7 +95,7 @@ const Register = () => {
                     backgroundColor: "white",
                     boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.0784313725490196)",
                     padding: "1em 2em",
-
+                    borderRadius: "30px"
                 }}
             >
                 {/* <img src={Logo} /> */}
@@ -122,7 +141,8 @@ const Register = () => {
                         name="country"
                         rules={[{ required: true, message: "Please enter a country name" }]}
                     >
-                        <Input />
+                        <Cascader options={countryLists}
+                        placeholder="Select a country"/>
                     </Form.Item>
 
 
