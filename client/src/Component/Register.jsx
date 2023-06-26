@@ -220,6 +220,16 @@ const Register = () => {
                         </span>
                     </Form.Item>
                 </Form>
+
+                <Form>
+                    <Form.Item style={{ textAlign: 'center' }}>
+                        <Button htmlType='submit' style={{ width: "50%" }}>
+                            <span>
+                                <a onClick={() => history("/")}>Goto Homepage</a>
+                            </span>
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Col>
         </Row>
     )

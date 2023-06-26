@@ -9,9 +9,8 @@ const Homepage = () => {
     return (
         <div>
             <Navbar />
-            <Footer />
             <Outlet />
-
+            <Footer />
         </div>
     );
 };

@@ -35,24 +35,24 @@ const Newlogin = () => {
         const script = document.createElement('script');
         script.src = 'https://accounts.google.com/gsi/client';
         script.onload = () => {
-          google.accounts.id.initialize({
-            client_id: "672357485286-51lj6snvj005bfd1eo899euduhkevmhn.apps.googleusercontent.com",
-            callback: handleCallbackResponse
-          });
-      
-          google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            { theme: "outline", size: "large" }
-          );
+            google.accounts.id.initialize({
+                client_id: "672357485286-51lj6snvj005bfd1eo899euduhkevmhn.apps.googleusercontent.com",
+                callback: handleCallbackResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("signInDiv"),
+                { theme: "outline", size: "large" }
+            );
         };
-      
+
         document.body.appendChild(script);
-      };
-      
-      
-        useEffect(() => {
-          initializeGoogleSignIn();
-        }, []);
+    };
+
+
+    useEffect(() => {
+        initializeGoogleSignIn();
+    }, []);
 
 
     return (
@@ -118,7 +118,7 @@ const Newlogin = () => {
                         </span>
                     </Form.Item>
 
-                    <Form.Item style={{ textAlign: 'center', display: 'flex', justifyContent: 'center'}}>
+                    <Form.Item style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
                         <div id='signInDiv'></div>
                     </Form.Item>
 
@@ -128,7 +128,15 @@ const Newlogin = () => {
                             <a onClick={() => history("/signup")} style={{ color: 'blue' }}>Sign Up</a>
                         </span>
                     </Form.Item>
-
+                </Form>
+                <Form>
+                    <Form.Item style={{ textAlign: 'center' }}>
+                        <Button htmlType='submit' style={{ width: "50%" }}>
+                            <span>
+                                <a onClick={() => history("/")}>Goto Homepage</a>
+                            </span>
+                        </Button>
+                    </Form.Item>
                 </Form>
             </Col>
         </Row>

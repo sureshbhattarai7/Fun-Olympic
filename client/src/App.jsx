@@ -6,23 +6,22 @@ import About from "./Component/About";
 import ContactUs from "./Component/ContactUs";
 import ForgotPassword from "./Component/ForgotPassword";
 import Navbar from "./Component/Navbar";
+import Footer from "./Component/Footer";
 import Highlight from "./Component/Highlight";
 import Live from "./Component/Live";
 import AdminDashboard from "./Component/Admin/AdminDashboard";
-
+import Homepage from "./Component/Homepage";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navbar />}>
+        <Route path="/" element={<Homepage />}>
 
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/highlight" element={<Highlight />} />
           <Route path="/live" element={<Live />} />
-
-
         </Route>
 
         <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -31,7 +30,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
 
       </Routes>
-
+      
     </>
 
   )
