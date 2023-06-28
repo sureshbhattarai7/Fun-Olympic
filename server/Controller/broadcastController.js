@@ -1,12 +1,12 @@
-const Contact = require('./../Model/contactModel');
+const Broadcast = require('./../Model/broadcastModel');
 
-exports.createContact = async (req, res) => {
-    const contact = await Contact.create(req.body);
+exports.createBroadcast = async (req, res) => {
     try {
+        const broadcast = await Broadcast.create(req.body);
         res.status(200).json({
             status: 'success',
             data: {
-                contact
+                broadcast
             }
         })
     } catch (err) {
@@ -15,22 +15,21 @@ exports.createContact = async (req, res) => {
             message: err.message
         })
     }
-
 }
 
-exports.getContacts = async (req, res) => {
+exports.getBroadcast = async (req, res) => {
+    const broadcast = await Broadcast.find();
     try {
-        const contacts = await Contact.find();
         res.status(200).json({
             status: 'success',
             data: {
-                contacts
+                broadcast
             }
         })
     } catch (err) {
         res.status(400).json({
             status: 'fail',
-            err: err.message
+            message: err.message
         })
     }
 }

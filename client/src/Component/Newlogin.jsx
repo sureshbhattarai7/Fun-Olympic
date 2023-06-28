@@ -21,7 +21,7 @@ const Newlogin = () => {
             history("/");
             message.success('User logged in successfully!');
         }).catch((err) => {
-            console.log(err);
+            console.log(err.message);
             message.error('User logged in failed!');
         });
     };

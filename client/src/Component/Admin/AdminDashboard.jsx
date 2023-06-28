@@ -8,7 +8,6 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        // Fetch the list of registered users from the server
         const fetchUsers = async () => {
             try {
                 const response = await axios.get('http://127.0.0.1:3000/user');
@@ -28,7 +27,7 @@ const AdminDashboard = () => {
 
     const handleStatusChange = async (userId, enabled) => {
         try {
-            // Update the user's status (enabled/disabled) in the server
+            // Update the user's status in the server
             await axios.put(`http://127.0.0.1:3000/user/${userId}`, { enabled });
             // Update the user's status in the local state
             setUsers(prevUsers =>
@@ -38,7 +37,6 @@ const AdminDashboard = () => {
             );
         } catch (error) {
             console.error(error);
-            // Handle error message display
         }
     };
 
@@ -79,6 +77,11 @@ const AdminDashboard = () => {
             key: 'country'
         },
         {
+            title: 'Role',
+            dataIndex: 'roles',
+            key: 'role'
+        },
+        {
             title: 'Status',
             dataIndex: 'enabled',
             key: 'enabled',
@@ -95,15 +98,21 @@ const AdminDashboard = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#536c79', color: 'white' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#536c79', color: 'white', height: '10vh' }}>
                 <a href='/admin' style={{ textDecoration: 'none', color: 'white' }}><h4>Admin Dashboard</h4></a>
-                <Button type='primary' htmlType='submit' style={{ marginLeft: '1300px', backgroundColor: 'grey' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                    <Button style={{ marginRight: '100px', background: "#D3D3D3" }} onClick={() => history('/admin')}>Users</Button>
+                    <Button style={{ marginRight: '100px', background: "#D3D3D3" }} onClick={() => history('/admin/broadcast')}>Broadcast</Button>
+                    <Button style={{ background: "#D3D3D3" }} onClick={() => history('/admin/usersmessages')}>User's messages</Button>
+                </div>
+                <Button type='primary' htmlType='submit' style={{ marginRight: '100px', backgroundColor: 'grey' }}>
                     <span>
                         <a onClick={() => history("/login")}>Logout</a>
                     </span>
                 </Button>
             </div>
-            <Table style={{background:'#536c79'}} dataSource={users} columns={columns} />
+
+            <Table style={{ background: '#536c79' }} dataSource={users} columns={columns} />
 
         </div>
     );

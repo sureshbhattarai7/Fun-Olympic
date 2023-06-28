@@ -1,15 +1,32 @@
 const { register, login, getUsers, getUser, updateUser, deleteUser } = require('./../Controller/userController');
 const { forgotPassword } = require('./../Controller/authController');
-const { contact } = require('./../Controller/contactController');
+const { createContact, getContacts } = require('./../Controller/contactController');
+const { createBroadcast, getBroadcast } = require('./../Controller/broadcastController');
 const router = require('express').Router();
 
-router.post('/register', register);
-router.post('/login', login);
-router.post('/contact-us', contact);
-router.post('/forgotpassword', forgotPassword);
-router.get('/', getUsers);
-router.get('/:id', getUser);
-router.patch('/:id', updateUser);
-router.delete('/:id', deleteUser);
+router.route('/register')
+    .post(register);
+
+router.route('/login')
+    .post(login);
+
+router.route('/contact-us')
+    .post(createContact)
+    .get(getContacts);
+
+router.route('/forgotPassword')
+    .post(forgotPassword);
+
+router.route('/')
+    .get(getUsers);
+
+router.route('/:id')
+    .get(getUser)
+    .patch(updateUser)
+    .delete(deleteUser);
+
+router.route('/admin/broadcast')
+    .post(createBroadcast)
+    .get(getBroadcast);
 
 module.exports = router;

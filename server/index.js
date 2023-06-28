@@ -2,6 +2,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const { Server } = require('socket.io');
 
 require('dotenv').config({path: './config.env'});
 const app = express();

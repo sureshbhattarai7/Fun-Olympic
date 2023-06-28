@@ -11,6 +11,8 @@ import Highlight from "./Component/Highlight";
 import Live from "./Component/Live";
 import AdminDashboard from "./Component/Admin/AdminDashboard";
 import Homepage from "./Component/Homepage";
+import { Broadcast } from "./Component/Admin/Broadcast";
+import UsersMessages from "./Component/Admin/UsersMessages";
 
 function App() {
   return (
@@ -27,7 +29,11 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/login" element={<Newlogin />} />
         <Route path="/signup" element={<Register />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+
+        <Route path="/admin" element={<AdminDashboard />}>
+        </Route>
+        <Route path="/admin/broadcast" element={<Broadcast />} />
+        <Route path="/admin/usersmessages" element={<UsersMessages />} />
 
       </Routes>
       

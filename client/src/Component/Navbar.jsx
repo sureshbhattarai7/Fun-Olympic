@@ -51,7 +51,9 @@ const Navbar = () => {
                 justifyContent: 'space-around',
                 alignItems: 'center',
                 background: 'rgb(83, 108, 121)',
-                height: '4rem'
+                height: '4rem',
+                //position: 'fixed',
+                //width: '100%'
             }}>
 
                 <div style={{

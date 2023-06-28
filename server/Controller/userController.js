@@ -50,12 +50,12 @@ exports.login = async (req, res) => {
             })
         };
 
-        if (!checkUser.enabled) {
-            return res.status(401).json({
-              status: 'fail',
-              message: 'Account is disabled. Please contact the administrator.',
-            });
-        }
+        // if (!checkUser.enabled) {
+        //     return res.status(401).json({
+        //       status: 'fail',
+        //       message: 'Account is disabled. Please contact the administrator.',
+        //     });
+        // }
         
         res.status(200).json({
             status: 'success'

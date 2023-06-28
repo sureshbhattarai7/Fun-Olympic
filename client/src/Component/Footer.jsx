@@ -1,13 +1,21 @@
 import React from 'react';
 import { Layout, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import logo from './../Images/logo_transparent.png';
 
 const { Footer } = Layout;
 
 const AppFooter = () => {
   return (
-    <Footer style={{ background: 'rgb(83, 108, 121)', color: 'white', position: 'fixed', left: '0', bottom: '0', width: '100%', height: 'auto', fontSize: '15px' }}>
+    <Footer style={{
+      background: 'rgb(83, 108, 121)',
+      color: 'white',
+      left: '0',
+      bottom: '0',
+      width: '100%',
+      height: 'auto',
+      fontSize: '15px',
+      position: 'fixed'
+    }}>
       <Row justify="center" align="middle" style={{ height: '100%' }}>
         <Col span={24} md={18} lg={12}>
           <Row justify="space-between" align="middle">

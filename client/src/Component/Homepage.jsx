@@ -9,7 +9,7 @@ const Homepage = () => {
     return (
         <div>
             <Navbar />
-            <Outlet />
+            <Outlet style={{height: 650}} />
             <Footer />
         </div>
     );
