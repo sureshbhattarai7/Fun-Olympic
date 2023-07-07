@@ -14,7 +14,7 @@ const AppFooter = () => {
       width: '100%',
       height: 'auto',
       fontSize: '15px',
-      position: 'fixed'
+      position: 'relative'
     }}>
       <Row justify="center" align="middle" style={{ height: '100%' }}>
         <Col span={24} md={18} lg={12}>

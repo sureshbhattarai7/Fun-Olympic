@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import {Table, Button } from 'antd';
+import React, { useEffect, useState, useRef } from 'react'
+import { Table, Button, Row, Col, Form, Card, Avatar, Input, message } from 'antd';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 const Live = () => {
+  const history = useNavigate();
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
@@ -18,6 +21,7 @@ const Live = () => {
     fetchData().then((response) => {
       const mapData = response.data.data.broadcast.map((row, index) => ({
         SN: index + 1,
+        id: row._id,
         category: row.category,
         title: row.title,
         url: row.url,
@@ -46,19 +50,31 @@ const Live = () => {
       title: 'URL',
       dataIndex: 'url',
       key: 'url',
-      render: (text) => <a href={text} target="_blank" rel="noopener noreferrer">{text}</a>,
     },
     {
       title: 'Description',
       dataIndex: 'description',
       key: 'description'
+    },
+    {
+      title: 'Watch',
+      render: (record) => (
+        <Button onClick={(id) => {
+          history(`/live/${record.id}`)
+          console.log(record.id)
+        }}>Watch</Button>
+      ),
     }
   ];
+
+
 
   return (
     <div>
       <div>
-        <Table dataSource={data} columns={columns} />
+        <Form style={{height: '60vh', width: '100%'}}>
+          <Table dataSource={data} columns={columns} rowKey={(cl) => cl.id} />
+        </Form>
       </div>
     </div>
   );

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Switch, Button } from 'antd';
+import { Table, Switch, Button, message } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
     const history = useNavigate();
     const [users, setUsers] = useState([]);
+    const sessiondata = JSON.parse(sessionStorage.getItem('userdetail'));
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -13,7 +15,7 @@ const AdminDashboard = () => {
                 const response = await axios.get('http://127.0.0.1:3000/user');
                 const updatedUsers = response.data.data.users.map(user => ({
                     ...user,
-                    enabled: true // Set default value to true
+                    // enabled: true // Set default value to true
                 }))
                 setUsers(response.data.data.users);
                 setUsers(updatedUsers)
@@ -71,11 +73,7 @@ const AdminDashboard = () => {
             dataIndex: 'username',
             key: 'username'
         },
-        {
-            title: 'Country',
-            dataIndex: 'country',
-            key: 'country'
-        },
+
         {
             title: 'Role',
             dataIndex: 'roles',
@@ -96,6 +94,7 @@ const AdminDashboard = () => {
         },
     ];
 
+
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#536c79', color: 'white', height: '10vh' }}>
@@ -107,7 +106,11 @@ const AdminDashboard = () => {
                 </div>
                 <Button type='primary' htmlType='submit' style={{ marginRight: '100px', backgroundColor: 'grey' }}>
                     <span>
-                        <a onClick={() => history("/login")}>Logout</a>
+                        <a onClick={() => {
+                            history("/login")
+                            message.success('Admin logged out successfully!');
+                            sessionStorage.clear();
+                        }}>Logout</a>
                     </span>
                 </Button>
             </div>

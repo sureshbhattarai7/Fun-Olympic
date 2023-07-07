@@ -1,7 +1,6 @@
-const { register, login, getUsers, getUser, updateUser, deleteUser } = require('./../Controller/userController');
-const { forgotPassword } = require('./../Controller/authController');
+const { register, login, getUsers, getUser, updateUser, deleteUser, forgotPassword, verifyPass, changePassword } = require('./../Controller/userController');
 const { createContact, getContacts } = require('./../Controller/contactController');
-const { createBroadcast, getBroadcast } = require('./../Controller/broadcastController');
+const { createBroadcast, getBroadcasts, updateBroadcast, deleteBroadcast, getBroadcast } = require('./../Controller/broadcastController');
 const router = require('express').Router();
 
 router.route('/register')
@@ -25,8 +24,18 @@ router.route('/:id')
     .patch(updateUser)
     .delete(deleteUser);
 
+router.route('/profile/:id').get(getUser);
+
+router.route('/changepassword/:id').get(verifyPass);
+router.route('/changepassword/:id').patch(changePassword);
+
 router.route('/admin/broadcast')
     .post(createBroadcast)
-    .get(getBroadcast);
+    .get(getBroadcasts)
+    .patch(updateBroadcast)
+    .delete(deleteBroadcast);
+
+router.route('/admin/broadcast/:id').get(getBroadcast);
+
 
 module.exports = router;

@@ -18,11 +18,22 @@ const Newlogin = () => {
             email: vals.email,
             password: vals.password
         }).then((res) => {
-            history("/");
-            message.success('User logged in successfully!');
-        }).catch((err) => {
-            console.log(err.message);
-            message.error('User logged in failed!');
+          console.log(res);
+          if (res.status === 200 && res.data.data.roles === "user") {
+            sessionStorage.setItem("userdetail", JSON.stringify(res.data.data));
+            history("/home");
+            message.success("Login Successfully");
+          }
+  
+          if (res.status === 200 && res.data.data.roles === "admin") {
+            sessionStorage.setItem("userdetail", JSON.stringify(res.data.data));
+            history("/admin");
+            message.success("Login Successfully");
+          }
+        })
+        .catch((err) => {
+          message.error("Login Failed");
+          console.log(err);
         });
     };
 
@@ -107,7 +118,7 @@ const Newlogin = () => {
                     <Form.Item style={{ textAlign: "center" }}>
                         <Button type="primary" htmlType='submit' style={{ width: "100%" }}>
                             <span>
-                                <a onClick={() => history("/")}>Login</a>
+                                <a onClick={() => history("/home")}>Login</a>
                             </span>
                         </Button>
                     </Form.Item>
@@ -133,7 +144,7 @@ const Newlogin = () => {
                     <Form.Item style={{ textAlign: 'center' }}>
                         <Button htmlType='submit' style={{ width: "50%" }}>
                             <span>
-                                <a onClick={() => history("/")}>Goto Homepage</a>
+                                <a onClick={() => history("/home")}>Goto Homepage</a>
                             </span>
                         </Button>
                     </Form.Item>

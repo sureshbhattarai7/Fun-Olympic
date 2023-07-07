@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const contactSchema = mongoose.Schema({
+const contactSchema = new mongoose.Schema({
     fullname: {
         type: String,
         required: [true, 'Enter your full name!']

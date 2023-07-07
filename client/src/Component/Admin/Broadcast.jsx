@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Input, Form, Row, Col } from 'antd';
+import React, {useState, useEffect} from 'react';
+import { Button, Input, Form, Row, Col, message, List } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -24,10 +24,11 @@ export const Broadcast = () => {
             console.log(res.data.data.broadcast);
             message.success('URL sent successfully!');
         }).catch((error) => {
-            console.log(error.response.message);
+            console.log(error.message);
         })
     };
 
+   
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#536c79', color: 'white', height: '10vh' }}>
@@ -44,7 +45,7 @@ export const Broadcast = () => {
                 </Button>
             </div>
 
-            <Row
+            <Row 
                 className='form'
                 justify="center"
                 style={{

@@ -3,6 +3,7 @@ import { Form, Row, Col, Button, Input, message, Space, Progress, Cascader } fro
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { GoogleOutlined } from "@ant-design/icons";
 
 const Register = () => {
     const history = useNavigate();
@@ -29,6 +30,8 @@ const Register = () => {
             console.log(err);
         })
     })
+
+    const googleLogin = () => { };
 
     const url = "http://127.0.0.1:3000/user/register";
     const Register = async (data) => {
@@ -142,7 +145,7 @@ const Register = () => {
                         rules={[{ required: true, message: "Please enter a country name" }]}
                     >
                         <Cascader options={countryLists}
-                        placeholder="Select a country"/>
+                            placeholder="Select a country" />
                     </Form.Item>
 
 
@@ -225,11 +228,20 @@ const Register = () => {
                     <Form.Item style={{ textAlign: 'center' }}>
                         <Button htmlType='submit' style={{ width: "50%" }}>
                             <span>
-                                <a onClick={() => history("/")}>Goto Homepage</a>
+                                <a onClick={() => history("/home")}>Goto Homepage</a>
                             </span>
                         </Button>
                     </Form.Item>
                 </Form>
+
+                {/* <Form>
+                    <Form.Item>
+                        <Button style={{ width: "100%" }} onClick={googleLogin}>
+                            {" "}
+                            {<GoogleOutlined twoToneColor="#eb2f96" />} Sign up with Google
+                        </Button>
+                    </Form.Item>
+                </Form> */}
             </Col>
         </Row>
     )

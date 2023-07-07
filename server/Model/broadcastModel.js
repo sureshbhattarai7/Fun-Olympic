@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const broadcastSchema = mongoose.Schema({
+const broadcastSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, 'Category must be defined!']
